@@ -1,0 +1,22 @@
+- name: Install redis package
+  ansible.builtin.dnf:
+    name: '@redis:7'
+    state: present
+
+- name: Replace old text with new text
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: 'protected-mode yes'
+    replace: 'protected-mode no'
+
+- name: Install Redis Listen address
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: start redis service
+  ansible.builtin.systemd_service:
+    name: redis
+    state: started
+    enabled: true

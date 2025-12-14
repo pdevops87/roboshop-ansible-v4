@@ -1,0 +1,21 @@
+- name: Install nginx package
+  ansible.builtin.dnf:
+    name: '@nginx:1.24'
+    state: present
+
+#  copy files to remote locations
+- name: Copy nginx.conf file
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: import pre req code
+  ansible.builtin.include_role:
+    name: common
+
+- name: start nginx service
+  ansible.builtin.systemd_service:
+    name: nginx
+    state: restarted
+    daemon-reload: true
+    enabled: true

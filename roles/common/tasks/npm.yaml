@@ -1,0 +1,5 @@
+- name: Install npm
+  community.general.npm:
+    name: npm
+    path: "{{ app_location }}"
+    state: present

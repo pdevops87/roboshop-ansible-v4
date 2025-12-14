@@ -1,0 +1,12 @@
+- name: copy mongo repo local to remote
+  ansible.builtin.template:
+    src: "{{ dbServer }}.repo"
+    dest: /etc/yum.repos.d/{{ dbServer }}.repo
+
+- name: Install mongodb-mongosh
+  ansible.builtin.dnf:
+    name: 'mongodb-mongosh'
+    state: present
+
+- name: Load schema
+  ansible.builtin.shell: mongosh --host mongodb-dev.pdevops78.online </app/db/master-data.js

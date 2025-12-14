@@ -1,0 +1,23 @@
+- name: copy mongo repo
+  ansible.builtin.template:
+    src: "{{ dbServer }}".repo
+    dest: /etc/yum.repos.d/{{ dbServer }}.repo
+
+- name: Install mongodb
+  ansible.builtin.dnf:
+    name: mongodb-org
+    state: present
+
+- name: Replace old address with new address
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: start mongo service
+  ansible.builtin.systemd_service:
+    name: mongod
+    state: started
+    enabled: true
+
+

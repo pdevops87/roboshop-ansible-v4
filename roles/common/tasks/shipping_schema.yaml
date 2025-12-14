@@ -1,0 +1,27 @@
+- name: Load schema
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.pdevops78.online  -uroot -pRoboShop@1 < "{{ item }}"
+  loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql
+    - /app/db/master-data.sql
+
+
+#- name: Import schema files safely
+#  community.mysql.mysql_db:
+#    login_host: "mysql-{{ env }}.pdevops78.online"
+#    login_user: root
+#    login_password: "RoboShop@1"
+#    state: import
+#    target: "{{ item }}"
+#  loop:
+#    - /app/db/schema.sql
+#    - /app/db/app-user.sql
+#    - /app/db/master-data.sql
+
+
+
+#- name: Load user schema
+#  ansible.builtin.shell: mysql -h mysql-{{ env }}.pdevops78.online  -uroot -pRoboShop@1 < /app/db/app-user.sql
+#
+#- name: Load master data schema
+#  ansible.builtin.shell: mysql -h mysql-{{ env }}.pdevops78.online  -uroot -pRoboShop@1 < /app/db/master-data.sql

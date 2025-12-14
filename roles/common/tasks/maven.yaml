@@ -1,0 +1,14 @@
+- name: Install maven
+  ansible.builtin.dnf:
+    name: maven
+    state: present
+
+- name: mvn clean package
+  ansible.builtin.shell: mvn clean package
+  args:
+    chdir: "{{ app_location }}"
+
+- name: move target location to app location
+  ansible.builtin.shell: mv target/shipping-1.0.jar shipping.jar
+  args:
+    chdir: "{{ app_location }}"

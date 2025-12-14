@@ -1,0 +1,15 @@
+- name: copy user local to remote
+  ansible.builtin.template:
+    src: "{{ component }}.service"
+    dest: /etc/systemd/system/{{ component }}.service
+
+- name: Use role in loop
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: "{{ role_items }}"
+  loop:
+    - node.yaml
+    - npm.yaml
+    - backend_script.yaml
+  loop_control:
+    loop_var: role_items

@@ -1,0 +1,11 @@
+- name: install mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+- name: Load schema
+  ansible.builtin.shell: mysql -h mysql-dev.pdevops78.online  -uroot -pRoboShop@1 < /app/db/{{ item }}
+  loop:
+    - schema.sql
+    - app-user.sql
+    - master-data.sql
