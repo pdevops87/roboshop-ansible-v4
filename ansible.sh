@@ -1,6 +1,6 @@
 component=$1
 env=$2
-if [ -z $1 && -z $2 ]; then
+if [ -z "$1" && -z "$2" ]; then
    echo please provide input
    exit 1
 fi
