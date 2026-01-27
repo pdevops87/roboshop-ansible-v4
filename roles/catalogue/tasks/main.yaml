@@ -3,16 +3,13 @@
     src: "{{ component }}.service"
     dest: /etc/systemd/system/{{ component }}.service
 
-- name: pre-req code
-  ansible.builtin.include_role:
-    name: common
-
 - name: Use role in loop
   ansible.builtin.include_role:
     name: common
     tasks_from: "{{ item }}"
   loop:
     - node
+    - main
     - npm
     - mongo
   loop_control:
