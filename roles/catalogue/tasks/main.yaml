@@ -11,7 +11,11 @@
     - node.yaml
     - npm.yaml
     - mongo.yaml
-    - backend_script.yaml
+
+- name: run backend script
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: backend_script.yaml
 
 
 
