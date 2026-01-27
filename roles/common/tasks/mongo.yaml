@@ -9,4 +9,4 @@
     state: present
 
 - name: Load schema
-  ansible.builtin.shell: mongosh --host mongodb-dev.pdevops78.online </app/db/master-data.js
+  ansible.builtin.shell: "mongosh --host mongodb-dev.pdevops78.online </app/db/master-data.js"
