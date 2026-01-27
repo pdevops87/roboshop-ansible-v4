@@ -8,9 +8,9 @@
     name: common
     tasks_from: "{{ item }}"
   loop:
-    - node.yaml
-    - npm.yaml
-    - mongo.yaml
+    - node
+    - npm
+    - mongo
 
 - name: run backend script
   ansible.builtin.include_role:
