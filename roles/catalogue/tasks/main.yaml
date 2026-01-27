@@ -6,13 +6,12 @@
 - name: Use role in loop
   ansible.builtin.include_role:
     name: common
-    tasks_from: "{{ role_items }}"
+    tasks_from: "{{ item }}"
   loop:
     - node.yaml
     - npm.yaml
     - mongo.yaml
     - backend_script.yaml
-  loop_control:
-    loop_var: role_items
+
 
 
