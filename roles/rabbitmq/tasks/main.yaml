@@ -15,12 +15,12 @@
     enabled: true
 
 - name: Check if RabbitMQ user roboshop exists
-  shell: "rabbitmqctl list_users | grep -w roboshop"
+  ansible.builtin.shell: "rabbitmqctl list_users | grep -w roboshop"
   register: rabbitmq_user_check
   ignore_errors: yes
 
 - name: Delete RabbitMQ user roboshop if exists
-  shell: "rabbitmqctl delete_user roboshop"
+  ansible.builtin.shell: "rabbitmqctl delete_user roboshop"
   when: rabbitmq_user_check.rc == 0
 
 - name: set credentials
