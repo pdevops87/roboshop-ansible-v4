@@ -11,6 +11,8 @@
     - node
     - npm
     - mongo
+  loop_control:
+    loop_var: item
 
 - name: run backend script
   ansible.builtin.include_role:
